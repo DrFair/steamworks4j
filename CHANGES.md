@@ -1,5 +1,9 @@
 ## change log
 
+### FAIR
+- Updated to Steamworks SDK v1.49.
+- Added `SteamUserStats.getAchievementAndUnlockTime()`.
+
 ### HEAD
 - Updated to Steamworks SDK v1.46.
 - Added `SteamUserCallback.onAuthSessionTicket()`. (#83)

@@ -6,7 +6,7 @@
 
 	<groupId>com.code-disaster.steamworks4j</groupId>
 	<artifactId>steamworks4j-server</artifactId>
-	<version>1.8.1-SNAPSHOT</version>
+	<version>1.8.1-FAIR</version>
 
 	<packaging>jar</packaging>
 
@@ -98,7 +98,7 @@
 											<destinationFile>${project.build.outputDirectory}/libsdkencryptedappticket.so</destinationFile>
 										</fileSet>
 										<fileSet>
-											<sourceFile>../sdk/public/steam/lib/osx32/libsdkencryptedappticket.dylib</sourceFile>
+											<sourceFile>../sdk/public/steam/lib/osx/libsdkencryptedappticket.dylib</sourceFile>
 											<destinationFile>${project.build.outputDirectory}/libsdkencryptedappticket.dylib</destinationFile>
 										</fileSet>
 										<fileSet>
@@ -128,7 +128,7 @@
 		<dependency>
 			<groupId>com.code-disaster.steamworks4j</groupId>
 			<artifactId>steamworks4j</artifactId>
-			<version>1.8.1-SNAPSHOT</version>
+			<version>1.8.1-FAIR</version>
 		</dependency>
 	</dependencies>
 

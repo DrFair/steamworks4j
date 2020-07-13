@@ -6,7 +6,7 @@
 
 	<groupId>com.code-disaster.steamworks4j</groupId>
 	<artifactId>steamworks4j</artifactId>
-	<version>1.8.1-SNAPSHOT</version>
+	<version>1.8.1-FAIR</version>
 
 	<packaging>jar</packaging>
 
@@ -101,7 +101,7 @@
 											<destinationFile>${project.build.outputDirectory}/libsteam_api.so</destinationFile>
 										</fileSet>
 										<fileSet>
-											<sourceFile>../sdk/redistributable_bin/osx32/libsteam_api.dylib</sourceFile>
+											<sourceFile>../sdk/redistributable_bin/osx/libsteam_api.dylib</sourceFile>
 											<destinationFile>${project.build.outputDirectory}/libsteam_api.dylib</destinationFile>
 										</fileSet>
 										<fileSet>

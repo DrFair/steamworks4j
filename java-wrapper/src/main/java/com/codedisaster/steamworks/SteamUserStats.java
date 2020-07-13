@@ -68,6 +68,15 @@ public class SteamUserStats extends SteamInterface {
 		return defaultValue;
 	}
 
+	public SteamAchievementUnlocked getAchievementAndUnlockTime(String name) {
+		boolean[] achieved = new boolean[1];
+		long[] time = new long[1];
+		if (getAchievementAndUnlockTime(pointer, name, achieved, time)) {
+			return new SteamAchievementUnlocked(achieved[0], time[0]);
+		}
+		return new SteamAchievementUnlocked(false, -1);
+	}
+
 	public boolean setAchievement(String name) {
 		return setAchievement(pointer, name);
 	}
@@ -238,6 +247,11 @@ public class SteamUserStats extends SteamInterface {
 	private static native boolean getAchievement(long pointer, String name, boolean[] achieved); /*
 		ISteamUserStats* stats = (ISteamUserStats*) pointer;
 		return stats->GetAchievement(name, &achieved[0]);
+	*/
+
+	private static native boolean getAchievementAndUnlockTime(long pointer, String name, boolean[] achieved, long[] time); /*
+		ISteamUserStats* stats = (ISteamUserStats*) pointer;
+		return stats->GetAchievementAndUnlockTime(name, &achieved[0], (uint32*) &time[0]);
 	*/
 
 	private static native boolean setAchievement(long pointer, String name); /*

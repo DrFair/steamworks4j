@@ -190,7 +190,8 @@ class SteamGameServerNative {
 
 	static native int getPublicIP(long pointer); /*
 		ISteamGameServer* server = (ISteamGameServer*) pointer;
-		return server->GetPublicIP();
+		SteamIPAddress_t ip = server->GetPublicIP();
+		return ip.m_unIPv4;
 	*/
 
 	static native boolean handleIncomingPacket(long pointer, ByteBuffer data,
