@@ -69,6 +69,15 @@ public class SteamUserStats extends SteamInterface {
 		return defaultValue;
 	}
 
+	public SteamAchievementUnlocked getAchievementAndUnlockTime(String name) {
+		boolean[] achieved = new boolean[1];
+		long[] time = new long[1];
+		if (SteamUserStatsNative.getAchievementAndUnlockTime(pointer, name, achieved, time)) {
+			return new SteamAchievementUnlocked(achieved[0], time[0]);
+		}
+		return new SteamAchievementUnlocked(false, -1);
+	}
+
 	public boolean setAchievement(String name) {
 		return SteamUserStatsNative.setAchievement(name);
 	}
