@@ -180,6 +180,11 @@ public class SteamClientAPITest extends SteamTestApp {
 		}
 
 		@Override
+		public void onNumberOfCurrentPlayersReceived(boolean success, int players) {
+			System.out.println("Number of current players received: " + players);
+		}
+
+		@Override
 		public void onGlobalStatsReceived(long gameId, SteamResult result) {
 			System.out.println("Global stats received: gameId=" + gameId + ", result=" + result.toString());
 		}
@@ -471,6 +476,8 @@ public class SteamClientAPITest extends SteamTestApp {
 						days = Integer.parseInt(cmd[1]);
 					}
 					userStats.requestGlobalStats(days);
+				} else if (cmd[0].equals("players")) {
+					userStats.getNumberOfCurrentPlayers();
 				} else if (cmd[0].equals("lget") && cmd.length > 1) {
 					int days = 0;
 					if (cmd.length > 2) {
@@ -659,8 +666,18 @@ public class SteamClientAPITest extends SteamTestApp {
 			String appId = input.substring("apps subscribed ".length());
 			boolean subscribed = apps.isSubscribedApp(Integer.parseInt(appId));
 			System.out.println("user described to app #" + appId + ": " + (subscribed ? "yes" : "no"));
+		} else if (input.startsWith("deck ")) {
+			String cmd = input.substring("deck ".length());
+			if (cmd.equals("status")) {
+				boolean isDeck = utils.isSteamRunningOnSteamDeck();
+				System.out.println("Steam is running on SteamDeck: " + (isDeck ? "yes" : "no"));
+			} else if (cmd.equals("input")) {
+				// supposed to fail, since we run w/o UI here
+				boolean success = utils.showFloatingGamepadTextInput(
+						SteamUtils.FloatingGamepadTextInputMode.ModeSingleLine, 0, 0, 1280,200);
+				System.out.println("Show floating gamepad text input: " + (success ? "success" : "failed"));
+			}
 		}
-
 	}
 
 	public static void main(String[] arguments) {
