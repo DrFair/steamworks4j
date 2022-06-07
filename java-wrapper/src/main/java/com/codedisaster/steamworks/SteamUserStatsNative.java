@@ -37,6 +37,10 @@ final class SteamUserStatsNative {
 		return SteamUserStats()->GetAchievement(name, &achieved[0]);
 	*/
 
+	static native boolean getAchievementAndUnlockTime(String name, boolean[] achieved, long[] time); /*
+		return SteamUserStats()->GetAchievementAndUnlockTime(name, &achieved[0], (uint32*) &time[0]);
+	*/
+
 	static native boolean setAchievement(String name); /*
 		return SteamUserStats()->SetAchievement(name);
 	*/
