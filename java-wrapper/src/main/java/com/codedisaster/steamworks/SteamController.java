@@ -520,6 +520,7 @@ public class SteamController extends SteamInterface {
 	public static final float STEAM_CONTROLLER_MAX_ANALOG_ACTION_DATA = 1.0f;
 
 	private final long[] controllerHandles = new long[STEAM_CONTROLLER_MAX_COUNT];
+	private final long[] actionSetLayerHandles = new long[STEAM_CONTROLLER_MAX_COUNT];
 	private final int[] actionOrigins = new int[STEAM_CONTROLLER_MAX_ORIGINS];
 
 	public SteamController() {
@@ -566,6 +567,32 @@ public class SteamController extends SteamInterface {
 
 	public SteamControllerActionSetHandle getCurrentActionSet(SteamControllerHandle controller) {
 		return new SteamControllerActionSetHandle(SteamControllerNative.getCurrentActionSet(controller.handle));
+	}
+
+	public void activateActionSetLayer(SteamControllerHandle controller, SteamControllerActionSetHandle actionSet) {
+		SteamControllerNative.activateActionSetLayer(controller.handle, actionSet.handle);
+	}
+
+	public void deactivateActionSetLayer(SteamControllerHandle controller, SteamControllerActionSetHandle actionSet) {
+		SteamControllerNative.deactivateActionSetLayer(controller.handle, actionSet.handle);
+	}
+
+	public void deactivateAllActionSetLayers(SteamControllerHandle controller) {
+		SteamControllerNative.deactivateAllActionSetLayers(controller.handle);
+	}
+
+	public int getActiveActionSetLayers(SteamControllerHandle controller, SteamControllerActionSetHandle[] actionSetsOut) {
+		if (actionSetsOut.length < STEAM_CONTROLLER_MAX_ORIGINS) {
+			throw new IllegalArgumentException("Array size must be at least STEAM_CONTROLLER_MAX_ORIGINS");
+		}
+
+		int count = SteamControllerNative.getActiveActionSetLayers(controller.handle, actionSetLayerHandles);
+
+		for (int i = 0; i < count; i++) {
+			actionSetsOut[i] = new SteamControllerActionSetHandle(actionSetLayerHandles[i]);
+		}
+
+		return count;
 	}
 
 	public SteamControllerDigitalActionHandle getDigitalActionHandle(String actionName) {

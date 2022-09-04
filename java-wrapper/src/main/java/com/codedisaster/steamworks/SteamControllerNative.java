@@ -37,6 +37,22 @@ final class SteamControllerNative {
 		SteamController()->ActivateActionSet((ControllerHandle_t) controllerHandle, (ControllerActionSetHandle_t) actionSetHandle);
 	*/
 
+	static native void activateActionSetLayer(long controllerHandle, long actionSetHandle); /*
+		SteamController()->ActivateActionSetLayer((ControllerHandle_t) controllerHandle, (ControllerActionSetHandle_t) actionSetHandle);
+	*/
+
+	static native void deactivateActionSetLayer(long controllerHandle, long actionSetHandle); /*
+		SteamController()->DeactivateActionSetLayer((ControllerHandle_t) controllerHandle, (ControllerActionSetHandle_t) actionSetHandle);
+	*/
+
+	static native void deactivateAllActionSetLayers(long controllerHandle); /*
+		SteamController()->DeactivateAllActionSetLayers((ControllerHandle_t) controllerHandle);
+	*/
+
+	static native int getActiveActionSetLayers(long controllerHandle, long[] originsOut); /*
+		return SteamController()->GetActiveActionSetLayers((ControllerHandle_t) controllerHandle, (ControllerActionSetHandle_t*) handlesOut);
+	*/
+
 	static native long getCurrentActionSet(long controllerHandle); /*
 		return SteamController()->GetCurrentActionSet((ControllerHandle_t) controllerHandle);
 	*/
