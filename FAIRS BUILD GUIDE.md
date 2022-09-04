@@ -5,7 +5,7 @@ http://code-disaster.github.io/steamworks4j/build-instructions.html
 
 __All platforms pre-build steps:__
 1. Make sure you have the Steam SDK downloaded and extracted into the project root folder.  
-   You can download it from Steam here: https://partner.steamgames.com/doc/sdk  
+   You can download it from Steam here: https://partner.steamgames.com/doc/sdk
    When writing this, the target SDK version was 1.55.
    The file structure has to be like this:
    `<Project root>/sdk/public...`
@@ -20,6 +20,7 @@ Remember you have to do the above steps on all the platforms before going to the
 __Windows:__
 1. Visual Studio 2022 command line environment is required. If you do not have Visual Studio 2022 installed, do so now.
 2. Download premake5.exe and place it inside the build-natives folder.
+   This can be downloaded from https://premake.github.io/download/
 3. Launch the Visual Studio 2022 command line environment:
     1. Click on the windows start menu.
     2. Click all apps to show all the apps on your system.
@@ -43,7 +44,14 @@ __Linux:__
 7. You're done!
 
 __Mac OS:__
-* TODO
+1. Make sure you have XCode installed. You can do so from the app store.
+2. Download premake5 and place it inside the build-natives folder.
+   This can be downloaded from https://premake.github.io/download/
+3. Open a terminal and navigate to the build-natives folder.
+4. Run `./build-osx.sh`. This must be done from an Apple silicon Mac in the new versions.
+5. Make sure there were no errors. If there were, it means something went wrong. Check the pre-build steps again, the the required mac installs above.
+6. Commit and push the new mac natives, so that you can later package the library for all platforms.
+7. You're done!
 
 __Finally:__
 1. Make sure you have committed and pushed all the platform specific natives, and pulled on the last platform you intend to package on.
