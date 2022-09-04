@@ -55,5 +55,5 @@ __Mac OS:__
 
 __Finally:__
 1. Make sure you have committed and pushed all the platform specific natives, and pulled on the last platform you intend to package on.
-2. Run the Steam API Java Wrapper package maven task.
+2. Run the Steam API Java Wrapper install maven task.
 3. Find the final library jars in `java-wrapper/target/`. They will be called `steamworks4j-<version>.jar` and the javadocs and sources.
