@@ -3,9 +3,10 @@ This guide will explain in extremely specific steps how to build the natives on 
 You can find the official build instructions here:
 http://code-disaster.github.io/steamworks4j/build-instructions.html
 
-__All platforms pre build steps:__
+__All platforms pre-build steps:__
 1. Make sure you have the Steam SDK downloaded and extracted into the project root folder.  
    You can download it from Steam here: https://partner.steamgames.com/doc/sdk  
+   When writing this, the target SDK version was 1.55.
    The file structure has to be like this:
    `<Project root>/sdk/public...`
    `<Project root>/sdk/redistributable_bin...`
@@ -27,12 +28,21 @@ __Windows:__
 5. Run `build-win.bat vs2022`.
 6. Make sure there were no errors. If there were, it means something went wrong. Most commonly, this is a syntax error or that you didn't follow the pre build steps.
 7. Commit and push the new windows natives, so that you can later package the library for all platforms.
-8. You're done! (If there were no errors)
+8. You're done! Head to the next platform.
 
 __Linux:__
-* TODO
+1. A fairly recent version of GCC is required. One that support C++11.  
+   If you do not have it installed yet, you can usually do so from the terminal with the command:  
+   `sudo apt-get install gcc`
+2. Make sure premake4 is installed. You can do usually do so from the terminal with the command:  
+   `sudo apt-get install premake4`
+3. Open a terminal and navigate to the build-natives folder.
+4. Run `./build-linux.sh`.
+5. Make sure there were no errors. If there were, it means something went wrong. Check the pre-build steps again, and the required linux installs above.
+6. Commit and push the new linux natives, so that you can later package the library for all platforms.
+7. You're done!
 
-__MAC OS:__
+__Mac OS:__
 * TODO
 
 __Finally:__
