@@ -2,7 +2,8 @@
 
 ### FAIR
 - Added `SteamUserStats.getAchievementAndUnlockTime()`.
-- 
+- Added `SteamController` acton set layer methods.
+
 ### [1.10.0-SNAPSHOT]
 - Updated to Steamworks SDK v1.57.
 - Updated Maven modules to compile with Java 8.
