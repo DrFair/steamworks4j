@@ -13,5 +13,6 @@ public:
 	void onWarningMessage(int severity, const char *debugText);
 
     STEAM_CALLBACK(SteamUtilsCallback, onSteamShutdown, SteamShutdown_t, m_CallbackSteamShutdown);
+    STEAM_CALLBACK(SteamUtilsCallback, onGamepadTextInputDismissed, GamepadTextInputDismissed_t, m_CallbackGamepadTextInputDismissed);
 	STEAM_CALLBACK(SteamUtilsCallback, onFloatingGamepadTextInputDismissed, FloatingGamepadTextInputDismissed_t, m_CallbackFloatingGamepadTextInputDismissed);
 };
