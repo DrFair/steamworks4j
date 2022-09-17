@@ -5,6 +5,7 @@ static SteamUtilsCallback* s_messageHookInstance = NULL;
 SteamUtilsCallback::SteamUtilsCallback(JNIEnv* env, jobject callback)
 	: SteamCallbackAdapter(env, callback)
 	, m_CallbackSteamShutdown(this, &SteamUtilsCallback::onSteamShutdown)
+	, m_CallbackGamepadTextInputDismissed(this, &SteamUtilsCallback::onGamepadTextInputDismissed)
 	, m_CallbackFloatingGamepadTextInputDismissed(this, &SteamUtilsCallback::onFloatingGamepadTextInputDismissed) {
 
 }
@@ -35,6 +36,12 @@ void SteamUtilsCallback::onSteamShutdown(SteamShutdown_t* callback) {
     invokeCallback({
         callVoidMethod(env, "onSteamShutdown", "()V");
     });
+}
+
+void SteamUtilsCallback::onGamepadTextInputDismissed(GamepadTextInputDismissed_t* callback) {
+	invokeCallback({
+		callVoidMethod(env, "onGamepadTextInputDismissed", "(Z)V", (jboolean) callback->m_bSubmitted);
+	});
 }
 
 void SteamUtilsCallback::onFloatingGamepadTextInputDismissed(FloatingGamepadTextInputDismissed_t* callback) {

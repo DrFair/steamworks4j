@@ -7,6 +7,7 @@ final class SteamUtilsNative {
 	// @off
 
 	/*JNI
+		#include <steam_api.h>
 		#include "SteamUtilsCallback.h"
 	*/
 
@@ -83,6 +84,27 @@ final class SteamUtilsNative {
 
 	static native boolean isSteamRunningOnSteamDeck(); /*
 		return SteamUtils()->IsSteamRunningOnSteamDeck();
+	*/
+
+	static native int getEnteredGamepadTextLength(); /*
+		return SteamUtils()->GetEnteredGamepadTextLength();
+	*/
+
+	static native String getEnteredGamepadTextInput(int length); /*
+		char text[1024];
+
+		if (SteamUtils()->GetEnteredGamepadTextInput(text, length)) {
+			return env->NewStringUTF(text);
+		}
+
+		return nullptr;
+	*/
+
+	static native boolean showGamepadTextInput(int inputMode, int textLineMode,
+													   String description, int maxCharacters,
+													   String existingText); /*
+		return SteamUtils()->ShowGamepadTextInput((EGamepadTextInputMode) inputMode,
+			(EGamepadTextInputLineMode) textLineMode, description, maxCharacters, existingText);
 	*/
 
 	static native boolean showFloatingGamepadTextInput(int keyboardMode,

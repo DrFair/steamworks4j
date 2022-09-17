@@ -36,6 +36,16 @@ public class SteamUtils extends SteamInterface {
 		BottomRight
 	}
 
+	public enum GamepadTextInputMode {
+		ModeNormal,
+		ModePassword
+	}
+
+	public enum GamepadTextLineMode {
+		LineSingle,
+		LineMultiple
+	}
+
 	public enum FloatingGamepadTextInputMode {
 		ModeSingleLine,
 		ModeMultipleLines,
@@ -110,6 +120,21 @@ public class SteamUtils extends SteamInterface {
 
 	public boolean isSteamRunningOnSteamDeck() {
 		return SteamUtilsNative.isSteamRunningOnSteamDeck();
+	}
+
+	public int getEnteredGamepadTextLength() {
+		return SteamUtilsNative.getEnteredGamepadTextLength();
+	}
+
+	public String getEnteredGamepadTextInput(int length) {
+		return SteamUtilsNative.getEnteredGamepadTextInput(length);
+	}
+
+	public boolean showGamepadTextInput(GamepadTextInputMode inputMode,
+										GamepadTextLineMode lineMode, String description,
+										int maxCharacters, String existingText) {
+		return SteamUtilsNative.showGamepadTextInput(inputMode.ordinal(),
+				lineMode.ordinal(), description, maxCharacters, existingText);
 	}
 
 	public boolean showFloatingGamepadTextInput(FloatingGamepadTextInputMode keyboardMode,
