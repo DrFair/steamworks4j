@@ -3,6 +3,7 @@
 ### FAIR
 - Added `SteamUserStats.getAchievementAndUnlockTime()`.
 - Added `SteamController` acton set layer methods.
+- Added `SteamUtils.showGamepadTextInput()` and accompanying functions.
 
 ### [1.10.0-SNAPSHOT]
 - Updated to Steamworks SDK v1.57.
