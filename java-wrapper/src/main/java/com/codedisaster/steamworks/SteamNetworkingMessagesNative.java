@@ -1,5 +1,7 @@
 package com.codedisaster.steamworks;
 
+import java.nio.ByteBuffer;
+
 public class SteamNetworkingMessagesNative {
 
     // @off
@@ -13,10 +15,10 @@ public class SteamNetworkingMessagesNative {
 		return (intp) new SteamNetworkingMessagesCallback(env, javaCallback);
 	*/
 
-    static native int sendMessageToUser(long steamIDRemote, byte[] data, int dataSize, int sendFlags, int channel); /*
+    static native int sendMessageToUser(long steamIDRemote, ByteBuffer data, int offset, int size, int sendFlags, int channel); /*
         SteamNetworkingIdentity identity;
         identity.SetSteamID64(steamIDRemote);
-		return SteamNetworkingMessages()->SendMessageToUser(identity, data, dataSize, sendFlags, channel);
+		return SteamNetworkingMessages()->SendMessageToUser(identity, &data[offset], size, sendFlags, channel);
 	*/
 
     static native int receiveMessagesOnChannel(int channel, SteamNetworkingMessage[] outMessages, int maxMessages); /*
