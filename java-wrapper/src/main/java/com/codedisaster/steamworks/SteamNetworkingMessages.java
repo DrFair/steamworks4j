@@ -1,13 +1,35 @@
 package com.codedisaster.steamworks;
 
+import java.nio.ByteBuffer;
+
 public class SteamNetworkingMessages extends SteamInterface {
+
+    public enum SendFlag {
+        Unreliable(0),
+        NoNagle(1),
+        UnreliableNoNagle(1),
+        NoDelay(4),
+        UnreliableNoDelay(5),
+        Reliable(8),
+        ReliableNoNagle(9);
+
+        public final int value;
+        SendFlag(int value) {
+            this.value = value;
+        }
+    }
+
 
     public SteamNetworkingMessages(SteamNetworkingMessagesCallback callback) {
         super(SteamNetworkingMessagesNative.createCallback(new SteamNetworkingMessagesCallbackAdapter(callback)));
     }
 
-    public SteamResult sendMessageToUser(SteamID steamIDRemote, byte[] data, int dataSize, int sendFlags, int channel) {
-        int value = SteamNetworkingMessagesNative.sendMessageToUser(SteamNativeHandle.getNativeHandle(steamIDRemote), data, dataSize, sendFlags, channel);
+    public SteamResult sendMessageToUser(SteamID steamIDRemote, ByteBuffer data, SendFlag sendFlags, int channel) throws SteamException {
+        if (!data.isDirect()) {
+            throw new SteamException("Direct buffer required!");
+        }
+
+        int value = SteamNetworkingMessagesNative.sendMessageToUser(SteamNativeHandle.getNativeHandle(steamIDRemote), data, data.position(), data.remaining(), sendFlags.value, channel);
         return SteamResult.byValue(value);
     }
 
