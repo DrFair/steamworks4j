@@ -82,6 +82,14 @@ final class SteamUtilsNative {
 		return SteamUtils()->IsOverlayEnabled();
 	*/
 
+	static native boolean isSteamInBigPictureMode(); /*
+		return SteamUtils()->IsSteamInBigPictureMode();
+	*/
+
+	static native boolean isSteamChinaLauncher(); /*
+		return SteamUtils()->IsSteamChinaLauncher();
+	*/
+
 	static native boolean isSteamRunningOnSteamDeck(); /*
 		return SteamUtils()->IsSteamRunningOnSteamDeck();
 	*/
@@ -112,6 +120,10 @@ final class SteamUtilsNative {
 													   int textFieldWidth, int textFieldHeight); /*
 		return SteamUtils()->ShowFloatingGamepadTextInput((EFloatingGamepadTextInputMode) keyboardMode,
 			textFieldXPosition, textFieldYPosition, textFieldWidth, textFieldHeight);
+	*/
+
+	static native void setGameLauncherMode(boolean isLauncherMode); /*
+		SteamUtils()->SetGameLauncherMode(isLauncherMode);
 	*/
 
 	static native boolean dismissFloatingGamepadTextInput(); /*
