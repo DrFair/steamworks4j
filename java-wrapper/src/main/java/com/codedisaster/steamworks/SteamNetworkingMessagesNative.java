@@ -27,16 +27,27 @@ public class SteamNetworkingMessagesNative {
 	    for (int i = 0; i < res; i++) {
 		    jclass javaMessageClass = env->FindClass("com/codedisaster/steamworks/SteamNetworkingMessage");
 		    jclass javaMessageGlobalClass = reinterpret_cast<jclass>(env->NewGlobalRef(javaMessageClass));
-		    jmethodID javaMessageConstructor = env->GetMethodID(javaMessageGlobalClass, "<init>", "(Ljava/nio/ByteBuffer;IJ)V");
+		    jmethodID javaMessageConstructor = env->GetMethodID(javaMessageGlobalClass, "<init>", "(JLjava/nio/ByteBuffer;IIJ)V");
 
 		    SteamNetworkingMessage_t* message = msgs[i];
-		    jobject messageObject = env->NewObject(javaMessageGlobalClass, javaMessageConstructor, env->NewDirectByteBuffer(message->m_pData, message->m_cbSize), message->m_cbSize, message->m_identityPeer.GetSteamID64());
-		    env->SetObjectArrayElement(outMessages, i, messageObject);
+		    jobject messageObject = env->NewObject(javaMessageGlobalClass, javaMessageConstructor,
+		        (uintptr_t)message,
+		        env->NewDirectByteBuffer(message->m_pData, message->m_cbSize),
+		        message->m_cbSize,
+		        message->m_nChannel,
+		        message->m_identityPeer.GetSteamID64()
+		    );
 
-		    message->Release();
+		    env->SetObjectArrayElement(outMessages, i, messageObject);
+		    // Message is freed using releaseMessage(...)
 	    }
 	    return res;
 	*/
+
+    static native void releaseMessage(long messagePointer); /*
+        SteamNetworkingMessage_t* message = (SteamNetworkingMessage_t*) messagePointer;
+        message->Release();
+    */
 
     static native boolean acceptSessionWithUser(long steamIDRemote); /*
         SteamNetworkingIdentity identity;
