@@ -4,6 +4,7 @@
 - Added `SteamUserStats.getAchievementAndUnlockTime()`.
 - Added `SteamController` acton set layer methods.
 - Added `SteamUtils.showGamepadTextInput()` and accompanying functions.
+- Added basic `SteamNetworkingMessages` interface functions.
 
 ### [1.10.0-SNAPSHOT]
 - Updated Maven modules to compile with Java 8.
