@@ -18,7 +18,7 @@ Now everything is set up and ready to build.
 Remember you have to do the above steps on all the platforms before going to the below steps.
 
 __Windows:__
-1. Visual Studio 2022 command line environment is required. If you do not have Visual Studio 2022 installed, do so now.
+1. Visual Studio 2022 command line environment is required. If you do not have Visual Studio 2022 installed, do so now. I selected just Desktop environment tools module.
 2. Download premake5.exe and place it inside the build-natives folder.
    This can be downloaded from https://premake.github.io/download/
 3. Launch the Visual Studio 2022 command line environment:
