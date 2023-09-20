@@ -37,11 +37,12 @@ __Linux:__
    `sudo apt-get install gcc`
 2. Make sure premake4 is installed. You can do usually do so from the terminal with the command:  
    `sudo apt-get install premake4`
-3. Open a terminal and navigate to the build-natives folder.
-4. Run `./build-linux.sh`.
-5. Make sure there were no errors. If there were, it means something went wrong. Check the pre-build steps again, and the required linux installs above.
-6. Commit and push the new linux natives, so that you can later package the library for all platforms.
-7. You're done!
+3. If you do not have the make command, you can install it with `sudo apt-get install make`. Maybe `sudo apt-get install build-essential`?
+4. Open a terminal and navigate to the build-natives folder.
+5. Run `./build-linux.sh`.
+6. Make sure there were no errors. If there were, it means something went wrong. Check the pre-build steps again, and the required linux installs above.
+7. Commit and push the new linux natives, so that you can later package the library for all platforms.
+8. You're done!
 
 __Mac OS:__
 1. Make sure you have XCode installed. You can do so from the app store.
