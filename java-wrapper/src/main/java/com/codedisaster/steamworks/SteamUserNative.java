@@ -62,7 +62,15 @@ final class SteamUserNative {
 
 	static native int getAuthSessionTicket(ByteBuffer authTicket,
 										   int bufferOffset, int bufferCapacity, int[] sizeInBytes); /*
-		int ticket = SteamUser()->GetAuthSessionTicket(&authTicket[bufferOffset], bufferCapacity, (uint32*) sizeInBytes);
+		int ticket = SteamUser()->GetAuthSessionTicket(&authTicket[bufferOffset], bufferCapacity, (uint32*) sizeInBytes, nullptr);
+		return ticket;
+	*/
+
+	static native int getAuthTicketForWebApi(String identity); /*
+		if (identity[0] == '\0') {
+			identity = nullptr;
+		}
+		int ticket = SteamUser()->GetAuthTicketForWebApi(identity);
 		return ticket;
 	*/
 

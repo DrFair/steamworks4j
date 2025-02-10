@@ -2,6 +2,10 @@ package com.codedisaster.steamworks;
 
 public interface SteamUtilsCallback {
 
-	void onSteamShutdown();
+	default void onSteamShutdown() {
+	}
+
+	default void onFloatingGamepadTextInputDismissed() {
+	}
 
 }

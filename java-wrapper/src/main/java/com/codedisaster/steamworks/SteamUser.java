@@ -118,6 +118,11 @@ public class SteamUser extends SteamInterface {
 		return new SteamAuthTicket(ticket);
 	}
 
+	public SteamAuthTicket getAuthTicketForWebApi(String identity) {
+		int ticket = SteamUserNative.getAuthTicketForWebApi(maybeNull(identity));
+		return new SteamAuthTicket(ticket);
+	}
+
 	public SteamAuth.BeginAuthSessionResult beginAuthSession(ByteBuffer authTicket, SteamID steamID) throws SteamException {
 
 		if (!authTicket.isDirect()) {

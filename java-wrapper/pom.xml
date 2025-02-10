@@ -6,7 +6,7 @@
 
 	<groupId>com.code-disaster.steamworks4j</groupId>
 	<artifactId>steamworks4j</artifactId>
-	<version>1.9.0-FAIR</version>
+	<version>1.10.0-FAIR</version>
 
 	<packaging>jar</packaging>
 
@@ -79,7 +79,9 @@
 		<profile>
             <id>libs</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>!noLibs</name>
+				</property>
 			</activation>
 			<build>
                 <plugins>
@@ -120,6 +122,15 @@
                 </plugins>
             </build>
 		</profile>
+		<profile>
+			<id>java-8-api</id>
+			<activation>
+				<jdk>[9,)</jdk>
+			</activation>
+			<properties>
+				<maven.compiler.release>8</maven.compiler.release>
+			</properties>
+		</profile>
 	</profiles>
 
 	<properties>
@@ -133,23 +144,23 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>2.4</version>
+					<version>3.3.0</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>3.11.0</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
+				<version>3.3.0</version>
 				<configuration>
 					<excludeResources>true</excludeResources>
 				</configuration>
@@ -165,7 +176,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.3.1</version>
+				<version>3.5.0</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>

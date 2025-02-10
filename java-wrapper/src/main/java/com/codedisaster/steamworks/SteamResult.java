@@ -128,9 +128,15 @@ public enum SteamResult {
 	InvalidSignature(121),
 	ParseFailure(122),
 	NoVerifiedPhone(123),
+	InsufficientBattery(124),
+	ChargerRequired(125),
+	CachedCredentialInvalid(126),
+	PhoneNumberIsVOIP(127),
+	NotSupported(128),
+	FamilySizeLimitExceeded(129),
 
 	/**
-	 * If this is returned(), we missed to "port" an Steam error code above.
+	 * If this is returned(), we missed to "port" a Steam error code above.
 	 */
 	UnknownErrorCode_NotImplementedByAPI(0);
 

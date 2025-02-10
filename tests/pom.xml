@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.code-disaster.steamworks4j</groupId>
 		<artifactId>steamworks4j-parent</artifactId>
-		<version>1.9.0-FAIR</version>
+		<version>1.10.0-FAIR</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -16,21 +16,119 @@
 
 	<name>Steam API Java Wrapper - Tests</name>
 
+	<profiles>
+		<profile>
+			<id>lwjgl-natives-linux-amd64</id>
+			<activation>
+				<os>
+					<family>unix</family>
+					<arch>amd64</arch>
+				</os>
+			</activation>
+			<properties>
+				<lwjgl.natives>natives-linux</lwjgl.natives>
+			</properties>
+		</profile>
+		<profile>
+			<id>lwjgl-natives-macos-x86_64</id>
+			<activation>
+				<os>
+					<family>mac</family>
+					<arch>x86_64</arch>
+				</os>
+			</activation>
+			<properties>
+				<lwjgl.natives>natives-macos</lwjgl.natives>
+			</properties>
+		</profile>
+		<profile>
+			<id>lwjgl-natives-macos-aarch64</id>
+			<activation>
+				<os>
+					<family>mac</family>
+					<arch>aarch64</arch>
+				</os>
+			</activation>
+			<properties>
+				<lwjgl.natives>natives-macos-arm64</lwjgl.natives>
+			</properties>
+		</profile>
+		<profile>
+			<id>lwjgl-natives-windows-amd64</id>
+			<activation>
+				<os>
+					<family>windows</family>
+					<arch>amd64</arch>
+				</os>
+			</activation>
+			<properties>
+				<lwjgl.natives>natives-windows</lwjgl.natives>
+			</properties>
+		</profile>
+		<profile>
+			<id>java-8-api</id>
+			<activation>
+				<jdk>[9,)</jdk>
+			</activation>
+			<properties>
+				<maven.compiler.release>8</maven.compiler.release>
+			</properties>
+		</profile>
+	</profiles>
+
 	<properties>
+		<gdx-jnigen-loader.version>2.3.1</gdx-jnigen-loader.version>
+		<lwjgl.version>3.3.1</lwjgl.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.lwjgl</groupId>
+				<artifactId>lwjgl-bom</artifactId>
+				<version>${lwjgl.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.code-disaster.steamworks4j</groupId>
 			<artifactId>steamworks4j</artifactId>
-			<version>1.9.0-FAIR</version>
+			<version>1.10.0-FAIR</version>
+		</dependency>
+		<dependency>
+			<groupId>com.code-disaster.steamworks4j</groupId>
+			<artifactId>steamworks4j-gdx</artifactId>
+			<version>1.10.0-FAIR</version>
+		</dependency>
+		<dependency>
+			<groupId>com.code-disaster.steamworks4j</groupId>
+			<artifactId>steamworks4j-lwjgl3</artifactId>
+			<version>1.10.0-FAIR</version>
 		</dependency>
 		<dependency>
 			<groupId>com.code-disaster.steamworks4j</groupId>
 			<artifactId>steamworks4j-server</artifactId>
-			<version>1.9.0-FAIR</version>
+			<version>1.10.0-FAIR</version>
+		</dependency>
+		<dependency>
+			<groupId>com.badlogicgames.gdx</groupId>
+			<artifactId>gdx-jnigen-loader</artifactId>
+			<version>${gdx-jnigen-loader.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.lwjgl</groupId>
+			<artifactId>lwjgl</artifactId>
+			<classifier>${lwjgl.natives}</classifier>
 		</dependency>
 	</dependencies>
 
@@ -38,10 +136,10 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>3.6.0</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>

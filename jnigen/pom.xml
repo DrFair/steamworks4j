@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.code-disaster.steamworks4j</groupId>
 		<artifactId>steamworks4j-parent</artifactId>
-		<version>1.9.0-FAIR</version>
+		<version>1.10.0-FAIR</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -15,6 +15,18 @@
 	<packaging>jar</packaging>
 
 	<name>Steam API Java Wrapper - JNI code generator</name>
+
+	<profiles>
+		<profile>
+			<id>java-8-api</id>
+			<activation>
+				<jdk>[9,)</jdk>
+			</activation>
+			<properties>
+				<maven.compiler.release>8</maven.compiler.release>
+			</properties>
+		</profile>
+	</profiles>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,17 +37,17 @@
 		<dependency>
 			<groupId>com.badlogicgames.gdx</groupId>
 			<artifactId>gdx-jnigen</artifactId>
-			<version>1.9.0</version>
+			<version>2.3.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.code-disaster.steamworks4j</groupId>
 			<artifactId>steamworks4j</artifactId>
-			<version>1.9.0-FAIR</version>
+			<version>1.10.0-FAIR/version>
 		</dependency>
 		<dependency>
 			<groupId>com.code-disaster.steamworks4j</groupId>
 			<artifactId>steamworks4j-server</artifactId>
-			<version>1.9.0-FAIR</version>
+			<version>1.10.0-FAIR</version>
 		</dependency>
 	</dependencies>
 
@@ -43,10 +55,28 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>3.6.0</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<finalName>jnigen</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
 				</configuration>
 			</plugin>
 		</plugins>
