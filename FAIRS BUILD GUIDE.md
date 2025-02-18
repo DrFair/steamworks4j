@@ -6,7 +6,7 @@ http://code-disaster.github.io/steamworks4j/build-instructions.html
 __All platforms pre-build steps:__
 1. Make sure you have the Steam SDK downloaded and extracted into the project root folder.  
    You can download it from Steam here: https://partner.steamgames.com/doc/sdk
-   When writing this, the target SDK version was 1.55.
+   When writing this, the target SDK version was 1.59.
    The file structure has to be like this:
    `<Project root>/sdk/public...`
    `<Project root>/sdk/redistributable_bin...`
