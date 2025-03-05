@@ -34,4 +34,9 @@ public class SteamNetworkingUtils extends SteamInterface {
         SteamNetworkingUtilsNative.enableDebugOutputHook(this.callback, debutOutputHook != null, detailLevel.apiIndex);
     }
 
+    @Override
+    public void dispose() {
+        setDebugOutputHook(SteamNetworkingSocketsDebugOutputType.Everything, null);
+        super.dispose();
+    }
 }

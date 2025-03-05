@@ -6,6 +6,7 @@
 - Added `SteamController` acton set layer methods.
 - Added `SteamUtils.showGamepadTextInput()` and accompanying functions.
 - Added basic `SteamNetworkingMessages` interface functions.
+- Added debugging callback via new `SteamNetworkingUtils` class.
 
 ### [1.10.0-SNAPSHOT]
 - Updated to Steamworks SDK v1.57.
